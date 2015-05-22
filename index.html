@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MD Home Price Pitch Deck</title>
+  <meta charset="utf-8">
+  <meta name="description" content="MD Home Price Pitch Deck">
+  <meta name="author" content="Asfa L.">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>MD Home Price Pitch Deck</h1>
+    <h2>Course Project Developing Data Products</h2>
+    <p>Asfa L.<br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>MD Home Prices App - Why?</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>When people are looking to buy or sell a home they may be interested in comparing the current price to historical prices to see how the value has appreciated. Furthermore, they may want to see what the home may cost in a year.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>MD Home Prices App - What?</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>The app takes the price of a home as an input and upon pressing &quot;Submit&quot; it calculates the price of the  home in 1990, 2005, 2010, 2014 and 2016.  The 2016 price is based on a forecast by Zillow. The scond tab in the app uses GoogleVis to create an intereactive plot of the home prices calculated in the first tab.</p>
+
+<p>The historical prices were calculated based on data from he following websites:</p>
+
+<p><a href="http://www.neighborhoodscout.com/md/rates/">http://www.neighborhoodscout.com/md/rates/</a></p>
+
+<p>The Zillow forecast data can be found at:</p>
+
+<p><a href="http://www.zillow.com/md/home-values/">http://www.zillow.com/md/home-values/</a></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>MD Home Prices App - How? (Prices)</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>The app takes the price input by the user and divides it by the appreciation rate for that year to obtain the price of the home that year. For the forecast it multiplies the price input by 1 plus the rate of appreciation. Below is an example with the input price of $200,000</p>
+
+<pre><code class="r">homePrice&lt;- 200000
+costninety &lt;-  homePrice / 2.1325
+costofive &lt;- homePrice / 1.057
+costten &lt;-homePrice / 1.0031
+costfourteen &lt;-  homePrice /  1.0376
+costsixteen &lt;- homePrice * 1.026
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>MD Home Prices App - How? (Interactive Plot)</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>The plot then takes all the outputs and puts them in a data frame along with the corresponding years to create an interactive plot showing visually the increase in price since 1990.</p>
+
+<pre><code class="r">  y&lt;- c(costninety, costofive, costten, costfourteen, costsixteen)
+  x&lt;- c(&quot;1990&quot;, &quot;2005&quot;, &quot;2010&quot;, &quot;2014&quot;, &quot;2016&quot;)
+      df=data.frame(x,y)
+      names(df)&lt;-c(&quot;Year&quot;, &quot;Price&quot;)
+ plot(df, xlab=&quot;Year&quot;, ylab = &quot;Home Price&quot;)
+      lines(df)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-2-1.png" alt="plot of chunk unnamed-chunk-2"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='MD Home Prices App - Why?'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='MD Home Prices App - What?'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='MD Home Prices App - How? (Prices)'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='MD Home Prices App - How? (Interactive Plot)'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
