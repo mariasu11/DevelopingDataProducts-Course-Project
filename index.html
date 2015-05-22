@@ -13,7 +13,8 @@
     media="only screen and (max-device-width: 480px)" >
   <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
   <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
-  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="libraries/widgets/interactive/css/aceeditor.css"></link>
+<link rel=stylesheet href="./assets/css/ribbons.css"></link>
 
   
   <!-- Grab CDN jQuery, fall back to local if offline -->
@@ -90,23 +91,163 @@ costsixteen &lt;- homePrice * 1.026
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="class" id="id" style="background:;">
+<slide class="" id="slide-4" style="background:;">
   <hgroup>
     <h2>MD Home Prices App - How? (Interactive Plot)</h2>
   </hgroup>
   <article data-timings="">
-    <p>The plot then takes all the outputs and puts them in a data frame along with the corresponding years to create an interactive plot showing visually the increase in price since 1990.</p>
+     
+<div class='row-fluid'>
+  <div class='span5'>
+    <form id="knitForm4" data-cell="4">
+      <p>The plot then takes all the outputs and puts them in a data frame along with the corresponding years to create an interactive plot showing visually the increase in price since 1990.</p>
 
-<pre><code class="r">  y&lt;- c(costninety, costofive, costten, costfourteen, costsixteen)
+<pre><code class="r">require(googleVis)
+
+  y&lt;- c(costninety, costofive, costten, costfourteen, costsixteen)
   x&lt;- c(&quot;1990&quot;, &quot;2005&quot;, &quot;2010&quot;, &quot;2014&quot;, &quot;2016&quot;)
       df=data.frame(x,y)
       names(df)&lt;-c(&quot;Year&quot;, &quot;Price&quot;)
- plot(df, xlab=&quot;Year&quot;, ylab = &quot;Home Price&quot;)
-      lines(df)
+ Line&lt;-gvisLineChart(df, yvar =&quot;Price&quot;, options = list(title=&quot;Your MD Home Price Plot&quot;))
+ print(Line, tag= &#39;chart&#39;)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-2-1.png" alt="plot of chunk unnamed-chunk-2"> </p>
+<!-- LineChart generated in R 3.2.0 by googleVis 0.5.8 package -->
 
+<!-- Fri May 22 10:51:11 2015 -->
+
+<!-- jsHeader -->
+
+<script type="text/javascript">
+ 
+// jsData 
+function gvisDataLineChartIDc2834053a17 () {
+var data = new google.visualization.DataTable();
+var datajson =
+[
+ [
+ "1990",
+93786.6354 
+],
+[
+ "2005",
+189214.7588 
+],
+[
+ "2010",
+199381.9161 
+],
+[
+ "2014",
+192752.5058 
+],
+[
+ "2016",
+205200 
+] 
+];
+data.addColumn('string','Year');
+data.addColumn('number','Price');
+data.addRows(datajson);
+return(data);
+}
+ 
+// jsDrawChart
+function drawChartLineChartIDc2834053a17() {
+var data = gvisDataLineChartIDc2834053a17();
+var options = {};
+options["allowHtml"] = true;
+options["title"] = "Your MD Home Price Plot";
+
+    var chart = new google.visualization.LineChart(
+    document.getElementById('LineChartIDc2834053a17')
+    );
+    chart.draw(data,options);
+    
+
+}
+  
+ 
+// jsDisplayChart
+(function() {
+var pkgs = window.__gvisPackages = window.__gvisPackages || [];
+var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
+var chartid = "corechart";
+  
+// Manually see if chartid is in pkgs (not all browsers support Array.indexOf)
+var i, newPackage = true;
+for (i = 0; newPackage && i < pkgs.length; i++) {
+if (pkgs[i] === chartid)
+newPackage = false;
+}
+if (newPackage)
+  pkgs.push(chartid);
+  
+// Add the drawChart function to the global list of callbacks
+callbacks.push(drawChartLineChartIDc2834053a17);
+})();
+function displayChartLineChartIDc2834053a17() {
+  var pkgs = window.__gvisPackages = window.__gvisPackages || [];
+  var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
+  window.clearTimeout(window.__gvisLoad);
+  // The timeout is set to 100 because otherwise the container div we are
+  // targeting might not be part of the document yet
+  window.__gvisLoad = setTimeout(function() {
+  var pkgCount = pkgs.length;
+  google.load("visualization", "1", { packages:pkgs, callback: function() {
+  if (pkgCount != pkgs.length) {
+  // Race condition where another setTimeout call snuck in after us; if
+  // that call added a package, we must not shift its callback
+  return;
+}
+while (callbacks.length > 0)
+callbacks.shift()();
+} });
+}, 100);
+}
+ 
+// jsFooter
+</script>
+ 
+
+<!-- jsChart -->  
+
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartLineChartIDc2834053a17"></script>
+ 
+
+<!-- divChart -->
+
+<div id="LineChartIDc2834053a17" 
+  style="width: 500; height: automatic;">
+</div>
+
+      <div id='aceeditor4' style="height:px;"></div>
+      <div class='interactive btn-toolbar pull-left'>
+        <div class='btn-group'>
+          <a class='btn btn-small action-button' id='runCode4' data-action='runCode'
+            data-cell='4' rel='tooltip' data-title='Run Code'>
+            <i class='icon-play'></i>
+          </a>
+          <a class='btn btn-small iBtn' id='testCode4' data-action='testCode'
+             data-cell='4' rel='tooltip' data-title='Test Code'>
+            <i class='icon-check'></i>
+          </a>
+          <a class='btn btn-small iBtn' id='clearResult4' data-action='clearResult'
+             data-cell='4' rel='tooltip' data-title='Clear Output'>
+            <i class="icon-remove"></i>
+          </a>
+          <a class='btn  btn-small iBtn' id='getHint4' rel='tooltip' 
+            data-title="Get Hint" data-action='getHint'
+            data-cell='4' data-hint="">
+            <i class="icon-bookmark"></i>
+          </a>
+        </div>
+      </div>    </form>
+  </div>
+  <div class='span7'>
+    <iframe id="knitResult4" class='shiny-html-output'></iframe>
+  </div>
+</div>
   </article>
   <!-- Presenter Notes -->
 </slide>
@@ -148,7 +289,10 @@ costsixteen &lt;- homePrice * 1.026
   <![endif]-->
 </body>
   <!-- Load Javascripts for Widgets -->
-  
+  <script src="libraries/widgets/interactive/js/ace/js/ace.js"></script>
+<script src="libraries/widgets/interactive/js/opencpu-0.5.js"></script>
+<script src="libraries/widgets/interactive/js/interactive.js"></script>
+
   <!-- LOAD HIGHLIGHTER JS FILES -->
   <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
   <script>hljs.initHighlightingOnLoad();</script>

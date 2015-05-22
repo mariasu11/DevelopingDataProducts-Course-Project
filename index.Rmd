@@ -6,7 +6,7 @@ date        : 05/20/15
 framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
 highlighter : highlight.js  # {highlight.js, prettify, highlight}
 hitheme     : tomorrow      # 
-widgets     : []            # {mathjax, quiz, bootstrap}
+widgets     : [interactive]            # {mathjax, quiz, bootstrap}
 mode        : selfcontained # {standalone, draft}
 knit        : slidify::knit2slides
 ---
@@ -47,18 +47,20 @@ costsixteen <- homePrice * 1.026
 
 
 
---- .class #id 
+--- &interactive
 
 ## MD Home Prices App - How? (Interactive Plot)
 
 The plot then takes all the outputs and puts them in a data frame along with the corresponding years to create an interactive plot showing visually the increase in price since 1990.
 
-```{r, eval=TRUE }
+```{r, opts.label= 'interactive', results='asis'}
+require(googleVis)
+
   y<- c(costninety, costofive, costten, costfourteen, costsixteen)
   x<- c("1990", "2005", "2010", "2014", "2016")
       df=data.frame(x,y)
       names(df)<-c("Year", "Price")
- plot(df, xlab="Year", ylab = "Home Price")
-      lines(df)
+ Line<-gvisLineChart(df, yvar ="Price", options = list(title="Your MD Home Price Plot"))
+ print(Line, tag= 'chart')
 ```
 
